@@ -12,8 +12,18 @@ test('get started link', async ({ page }) => {
 
   // Click the get started link.
   await page.getByRole('link', { name: 'Get started' }).click();
-  await page.waitForTimeout(3000);
+  //await page.waitForTimeout(3000);
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
   await page.waitForTimeout(3000);
+  
+  await expect(page.getByRole('heading',{name: 'Installing Playwright'})).toBeVisible();
+  await page.screenshot({ path: 'screenshot.png', fullPage:true});
+});
+
+test('checking How to install Playwright link',async({page})=>{
+  await page.goto('https://playwright.dev/');
+  await page.getByRole('link', { name: 'Get started' }).click();
+  await page.getByRole('link',{name:'How to install Playwright'}).click();
+  await page.screenshot({path:'screenshot2.png'});
 });
