@@ -26,5 +26,7 @@ test('checking How to install Playwright link',async({page})=>{
   await page.getByRole('link', { name: 'Get started' }).click();
   await page.getByRole('link',{name:'View a trace of your tests'}).click();
   await expect(page.getByRole('heading',{name:'Trace viewer'})).toBeVisible();
-  await page.screenshot({path:'screenshot2.png'});
+  await page.getByRole('link',{name:'How to open the HTML report'}).click();
+  await expect(page.getByRole('heading',{name:'Opening the HTML report'})).toBeVisible();
+  await page.screenshot({path:'screenshot2.png',fullPage:true});
 });
