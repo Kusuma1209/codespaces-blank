@@ -43,3 +43,25 @@ test('POST API', async ({request}, testInfo)=>{
         contentType: 'application/json'
     });
 });
+
+test('PUT API', async ({request}, testInfo)=>{
+    const response = await request.put('https://jsonplaceholder.typicode.com/posts/1', {
+        data: {
+            id: 1,
+            title: 'playwright',
+            body: 'testing',
+            userId: 11
+        }
+    });
+
+    expect(response.ok()).toBeTruthy();
+    expect(response.status()).toBe(200);
+
+    const responseBody = await response.json();
+     console.log(responseBody);
+
+     testInfo.attach('PUT Response', {
+        body: JSON.stringify(responseBody, null, 2),
+        contentType: 'application/json'
+    });
+});
