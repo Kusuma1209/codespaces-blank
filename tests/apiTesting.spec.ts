@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-test.only('GET API', async ({request}, testInfo)=>{
+test('GET API', async ({request}, testInfo)=>{
     const response = await request.get('https://jsonplaceholder.typicode.com/posts');
 
     expect(response.ok()).toBeTruthy();
@@ -24,9 +24,22 @@ test.only('GET API', async ({request}, testInfo)=>{
 });
 
 test('POST API', async ({request}, testInfo)=>{
-    const postData = {
-        title: 'foo',
-        body: 'bar',
-        userId: 1
-    };
-);
+    const response = await request.post('https://jsonplaceholder.typicode.com/posts', {
+        data: {
+            title: 'foo',
+            body: 'bar',
+            userId: 11
+        }
+    });
+
+    expect(response.ok()).toBeTruthy();
+    expect(response.status()).toBe(201);
+
+    const responseBody = await response.json();
+     console.log(responseBody);
+
+     testInfo.attach('POST Response', {
+        body: JSON.stringify(responseBody, null, 2),
+        contentType: 'application/json'
+    });
+});
