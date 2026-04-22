@@ -23,11 +23,18 @@ test('practice actions', async ({ page }) => {
     await expect(page).toHaveURL('https://playwright.dev/docs/locators');
     await page.screenshot({path:'screenshot4.png'});
     
-    await page.getByRole('link',{name:'page.getByTestId()'}).first().isVisible();
-    
-    await page.getByRole('link',{name:'page.getByTestId()'}).nth(0).click();
-    await page.getByRole('heading',{name:'Locate by test id'}).isVisible();
-    await page.getByRole('heading',{name:'Locate by test id'}).highlight();
-    //await page.getByRole('heading',{name:'Locate by test id'}).hover();
+    const locator1=page.getByRole('link',{name:'page.getByTestId()'});
+    //await page.getByRole('link',{name:'page.getByTestId()'}).first().isVisible();
+    await locator1.first().isVisible();
+    //await page.getByRole('link',{name:'page.getByTestId()'}).nth(0).click();
+    await locator1.nth(0).click();
+
+    const locator2=page.getByRole('heading',{name:'Locate by test id'});
+    //await page.getByRole('heading',{name:'Locate by test id'}).isVisible();
+    await locator2.isVisible();
+    //await page.getByRole('heading',{name:'Locate by test id'}).highlight();
+    await locator2.highlight();
+
+    //await locator2.hover();
     await page.screenshot({path:'screenshot5.png'});
 });
