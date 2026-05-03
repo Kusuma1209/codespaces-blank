@@ -21,7 +21,7 @@ test('practice actions', async ({ page }) => {
     await searchBox.press('Enter'); // better than keyboard
 
     await expect(page).toHaveURL('https://playwright.dev/docs/locators');
-    await page.screenshot({path:'screenshot4.png'});
+    //await page.screenshot({path:'screenshot4.png'});
     
     const locator1=page.getByRole('link',{name:'page.getByTestId()'});
     //await page.getByRole('link',{name:'page.getByTestId()'}).first().isVisible();
