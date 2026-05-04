@@ -9,6 +9,6 @@ test('dynamic loading', async ({ page }) => {
   await start.click();
 
   //await expect(finish).toBeVisible();
-  await finish.waitFor({ state: 'visible' });
+  await finish.waitFor({ state: 'visible' }); 
   await expect(helloText).toHaveText('Hello World!');
 });
